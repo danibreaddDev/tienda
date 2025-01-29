@@ -25,7 +25,7 @@ class LoginController extends Controller
         $user = User::where("username", $request->username)->first();
         $user->api_token = Str::random(60);
         $user->save();
-        return redirect()->intended(route('Products.index'));
+        return redirect()->intended(route('ProductList'));
     }
     public function logout() {
         Auth::logout();
