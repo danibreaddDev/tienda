@@ -13,7 +13,7 @@
                     <fieldset>
                         <input type="text" class="form form-control" value="1">
                     </fieldset>
-                    <a href="" class="btn btn-dark">Comprar</a>
+                    <a href="{{ route('Product', $product) }}" class="btn btn-dark">Comprar</a>
                 </div>
             </div>
         </div>

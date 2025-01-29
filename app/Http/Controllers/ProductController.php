@@ -24,10 +24,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(string $id)
+    public function show(string $name)
     {
         //
-        $product = Product::findOrFail($id);
+        $product = Product::where('name', $name)->first();
         return view("products.show",compact("product"));
     }
 }

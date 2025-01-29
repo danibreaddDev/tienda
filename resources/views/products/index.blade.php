@@ -9,7 +9,7 @@
                 <img src="{{$product["image"]}}" alt="{{$product["name"]}}" class="img-fluid">
                 <p>{{$product["name"]}}</p>
                 <p>{{$product["price"]}}</p>
-                <a href="{{ route('Products.show',$product["id"]) }}" class="btn btn-primary mb-2">Ver producto</a>
+                <a href="{{ route('Product',$product["name"]) }}" class="btn btn-primary mb-2">Ver producto</a>
             </div>
         </div>
     @empty

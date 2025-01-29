@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopCardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +17,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//index
+Route::get("/", function () {
+    return view("index");
+})->name("index");
 //login
-Route::get("login",[LoginController::class,"loginForm"])->name("login");
-Route::post("login",[LoginController::class,"login"]);
+Route::get("login", [LoginController::class, "loginForm"])->name("login");
+Route::post("login", [LoginController::class, "login"]);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-Route::group(['middleware', 'roles:admin,client'],function () {
-    Route::resource("Products",ProductController::class);
+//Pagina principal products solo te hacen falta el listar productos y el ver un producto
+Route::group(['middleware', 'roles:admin,client'], function () {
+    Route::get("Products", [ProductController::class, "index"])->name('ProductList');
+    Route::get("Products/{name}", [ProductController::class, "show"])->name('Product');
 });
-
+//carrito
+Route::group(['middleware', 'roles:admin,client'], function () {
+    Route::get("ShopCard", [ShopCardController::class, "index"])->name('ShopCardList');
+    Route::post("ShopCard", [ShopCardController::class, "store"])->name('ShopCardAdd');
+    Route::put("ShopCard", [ShopCardController::class, "update"])->name('ShopCardUpdate');
+    Route::delete("ShopCard", [ShopCardController::class, "destroy"])->name('ShopCardDelete');
+});
+//Crud usuario aqui es necesario el resource
+Route::group(['middleware', 'roles:admin'], function () {
+    Route::resource("Users", UserController::class);
+});
