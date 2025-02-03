@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         //
         $users = User::all();
-        return view("users.index",compact("users"));
+        return view("users.index", compact("users"));
     }
 
     /**
@@ -59,7 +59,7 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        return view("users.show",compact("user"));
+        return view("users.show", compact("user"));
     }
 
     /**
@@ -71,6 +71,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        return view("users.edit", compact("user"));
     }
 
     /**
@@ -83,6 +85,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->username = $request->username;
+        if ($user->password != $request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->dni = $request->dni;
+        $user->role = $request->role;
+        $user->save();
+        return redirect()->route('Users.index');
     }
 
     /**
@@ -93,6 +104,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route("Users.index");
         //
     }
 }

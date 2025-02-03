@@ -21,17 +21,10 @@ class LoginController extends Controller
             $error = "Incorrect User. Try it now.";
             return view("auth.login", compact("error"));
         }
-        //si el usuario esta autenticado generamos el token
-        $user = User::where("username", $request->username)->first();
-        $user->api_token = Str::random(60);
-        $user->save();
         return redirect()->intended(route('ProductList'));
     }
     public function logout()
     {
-        $user = User::where("username", auth()->user()->username)->first();
-        $user->api_token = null;
-        $user->save();
         Auth::logout();
         return redirect("login");
     }

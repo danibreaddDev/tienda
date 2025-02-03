@@ -22,8 +22,12 @@
                 <td>{{$user["dni"]}}</td>
                 <td>{{$user["api_token"]}}</td>
                 <td>{{$user["role"]}}</td>
-                <td><a href="">Editar</a></td>
-                <td><a href="">eliminar</a></td>
+                <td><a href="{{ route('Users.edit', $user->id) }}" class="btn btn-warning">Editar</a></td>
+                <td><form action="{{ route('Users.destroy', $user->id) }}" method="post">
+                    @method("DELETE")
+                    @csrf
+                    <button type="submit" class="btn btn-danger">eliminar</a></button>
+                    </form>
             </tr>
             @empty
 
