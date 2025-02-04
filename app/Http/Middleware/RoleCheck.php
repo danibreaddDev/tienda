@@ -18,7 +18,7 @@ class RoleCheck
     public function handle(Request $request, Closure $next, ...$roles)
     {
         if (!Auth::check()) { //si no esta autenticado
-            return redirect("/");
+            return redirect("/login");
         }
         if (!in_array(auth()->user()->role, $roles)) { //si no tiene los roles
             return redirect("/");
