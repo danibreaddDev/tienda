@@ -8,12 +8,21 @@
             </div>
             <div class="col">
                 <div class="d-flex flex-column gap-2 align-items-center">
+
                     <p class="fs-1 fw-bold">{{ $product['name'] }}</p>
                     <p class="fs-3 fw-medium">{{ $product['price'] }}</p>
-                    <fieldset>
-                        <input type="text" class="form form-control" value="1">
-                    </fieldset>
-                    <a href="{{ route('Product', $product) }}" class="btn btn-dark">Comprar</a>
+
+                    <form action="{{ route('ShopCardAdd') }}" method="POST">
+                        @csrf
+                        <fieldset>
+                            <input type="hidden" name="idProducto" value="{{$product["id"]}}">
+                            <input type="hidden" name="nombre" value="{{$product["name"]}}">
+                            <input type="hidden" name="precio" value="{{$product["price"]}}">
+                            <input type="text" name="cantidad" class="form form-control" value="1">
+                            <input type="submit" value="comprar" class="btn btn-dark">
+                        </fieldset>
+                    </form>
+
                 </div>
             </div>
         </div>
