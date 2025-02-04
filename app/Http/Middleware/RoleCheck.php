@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoleCheck
 {
@@ -16,14 +17,12 @@ class RoleCheck
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
-
-
-        if (!in_array(auth()->user()->role, $roles)) {
+        if (!Auth::check()) { //si no esta autenticado
             return redirect("/");
         }
-
-
-
+        if (!in_array(auth()->user()->role, $roles)) { //si no tiene los roles
+            return redirect("/");
+        }
         return $next($request);
     }
 }
