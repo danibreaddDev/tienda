@@ -36,7 +36,7 @@
             @if ($shopCard)
                 <div class="col d-flex flex-column gap-2 align-items-center">
                     <h1>Total: {{ $total }}€</h1>
-                    <a href="" class="btn btn-success">REALIZAR PEDIDO</a>
+                    <a href="{{ route('ConfirmOrder') }}" class="btn btn-success">REALIZAR PEDIDO</a>
                     <a href="{{ route('ProductList') }}" class="btn btn-secondary">Seguir Comprando</a>
 
                 </div>

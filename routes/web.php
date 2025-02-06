@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopCardController;
 use App\Http\Controllers\UserController;
@@ -40,4 +41,7 @@ Route::group(['middleware'=>'role:client,admin'], function () {
 //Crud usuario aqui es necesario el resource
 Route::group(['middleware'=>'role:admin'], function () {
     Route::resource("Users", UserController::class);
+});
+Route::group(['middleware'=>'role:client,admin'], function () {
+    Route::get("ConfirmOrder", [OrderController::class, "store"])->name('ConfirmOrder');
 });

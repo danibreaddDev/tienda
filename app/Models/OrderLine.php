@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderLine extends Model
 {
+    protected $table = "orderlines";
     use HasFactory;
     /**
      * Get the order that owns the OrderLine

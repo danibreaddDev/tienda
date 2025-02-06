@@ -15,7 +15,7 @@ class CreateOrderlineTable extends Migration
      */
     public function up()
     {
-        Schema::create('orderline', function (Blueprint $table) {
+        Schema::create('orderlines', function (Blueprint $table) {
             $table->id();
             $table->string("linea");
             $table->integer('cantidad');
