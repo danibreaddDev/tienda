@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +17,10 @@ class CreateOrderlineTable extends Migration
     {
         Schema::create('orderline', function (Blueprint $table) {
             $table->id();
+            $table->string("linea");
+            $table->integer('cantidad');
+            $table->foreignIdFor(Product::class);
+            $table->foreignIdFor(Order::class);
             $table->timestamps();
         });
     }
