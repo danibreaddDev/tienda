@@ -28,16 +28,18 @@ class OrderController extends Controller
         $order->save();
         $linea = 1;
         foreach ($shopCard as $line) {
-            $orderLine = new OrderLine();
-            $orderLine->linea = $linea;
-            $orderLine->nombre = $line["nombre"];
-            $orderLine->precio = $line["precio"];
-            $orderLine->cantidad = $line["cantidad"];
+            $orderLine = new OrderLine([
+                'linea' => $linea,
+                'nombre' => $line["nombre"],
+                'precio' => $line["precio"],
+                'cantidad' => $line["cantidad"]
+            ]);
             $orderLine->order()->associate($order);
             $orderLine->save();
-            $linea = $linea + 1;
+            $linea++;
         }
-        return $this->show($order);
+
+        return $this->show($order->load("orderlines"));
     }
 
     /**
@@ -49,7 +51,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
-        $orderInfo = Order::findOrFail($order->id)->with("orderlines")->first();
-        return view("orders.show", compact("orderInfo"));
+
+        return view("orders.show", compact("order"));
     }
 }

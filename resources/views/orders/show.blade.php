@@ -1,11 +1,46 @@
 @extends('layout')
-@section('title', "pedido")
+@section('title', 'pedido')
 @section('content')
-<pre>eo{{ $orderInfo }}</pre>
     @php
-        var_dump($orderInfo["order_lines"]);
+        $total = 0;
     @endphp
+
     <div class="px-5 container">
+        <h2 class="mb-4">Detalles del Pedido #{{ $order->id }}</h2>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre del Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($order->orderlines as $line)
+                @php
+                    $total += $line->precio * $line->cantidad;
+                @endphp
+                    <tr>
+                        <td>{{ $line->linea }}</td>
+                        <td>{{ $line->nombre }}</td>
+                        <td>{{ $line->cantidad }}</td>
+                        <td>{{ $line->precio }}€</td>
+                        <td>{{ $line->precio * $line->cantidad}}€</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <div class="mt-3 text-end">
+            <h4><strong>Total del Pedido:</strong>
+               @php
+                   echo "<h3>$total" . "€</h3>";
+               @endphp
+            </h4>
+        </div>
 
     </div>
+
 @endsection
