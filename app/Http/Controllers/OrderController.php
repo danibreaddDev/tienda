@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+use function PHPUnit\Framework\isEmpty;
+
 class OrderController extends Controller
 {
     /**
@@ -23,6 +25,9 @@ class OrderController extends Controller
             "idUnico" => auth()->user()->id
         ]);
         $shopCard = json_decode($response->body(), true);
+        if (isEmpty($shopCard)) {
+            return redirect()->route("ProductList");
+        }
         $order = new Order();
         $order->user()->associate(auth()->user());
         $order->save();
@@ -36,9 +41,9 @@ class OrderController extends Controller
             ]);
             $orderLine->order()->associate($order);
             $orderLine->save();
+            Http::withToken(ShopCardController::TOKEN)->delete(ShopCardController::API_URL . "/" . $line["id"]);
             $linea++;
         }
-
         return $this->show($order->load("orderlines"));
     }
 

@@ -7,6 +7,7 @@
 
     <div class="px-5 container">
         <h2 class="mb-4">Detalles del Pedido #{{ $order->id }}</h2>
+        <h3>DNI CLIENTE: {{$order->user->dni}}</h3>
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -40,6 +41,7 @@
                @endphp
             </h4>
         </div>
+        <a href="{{ route('ProductList') }}" class="btn btn-dark">Volver a los productos</a>
 
     </div>
 
