@@ -29,8 +29,9 @@ class OrderController extends Controller
         $linea = 1;
         foreach ($shopCard as $line) {
             $orderLine = new OrderLine();
-            $orderLine->product()->associate(Product::findOrFail($line["idProducto"]));
             $orderLine->linea = $linea;
+            $orderLine->nombre = $line["nombre"];
+            $orderLine->precio = $line["precio"];
             $orderLine->cantidad = $line["cantidad"];
             $orderLine->order()->associate($order);
             $orderLine->save();
@@ -48,7 +49,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
-        $orderInfo = Order::with("orderLines.product")->findOrFail($order->id);
+        $orderInfo = Order::with("orderLines")->findOrFail($order->id);
         return view("orders.show", compact("orderInfo"));
     }
 }

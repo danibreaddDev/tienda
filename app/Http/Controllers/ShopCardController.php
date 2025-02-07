@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 class ShopCardController extends Controller
 {
     const API_URL = "http://carrito/api/ShopCard";
-    const TOKEN = "Q2AlacGYmbzVhcD4FrH0";
+    const TOKEN = "kmbatMHAI4NVYNKvMDyt";
     //
     public function index()
     {

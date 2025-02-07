@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = ["name", "price", "image"];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
     use HasFactory;
-    public function orderlines()
-    {
-        return $this->hasMany(OrderLine::class);
-    }
 }

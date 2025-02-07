@@ -18,8 +18,9 @@ class CreateOrderlineTable extends Migration
         Schema::create('orderlines', function (Blueprint $table) {
             $table->id();
             $table->string("linea");
+            $table->string("nombre");
+            $table->float("precio");
             $table->integer('cantidad');
-            $table->foreignIdFor(Product::class);
             $table->foreignIdFor(Order::class);
             $table->timestamps();
         });
