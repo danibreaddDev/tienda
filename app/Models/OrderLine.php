@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderLine extends Model
 {
+
+    use HasFactory;
     protected $table = "orderlines";
     protected $fillable = ["linea", "cantidad", "nombre", "precio", "order_id"];
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
-    use HasFactory;
     /**
      * Get the order that owns the OrderLine
      *

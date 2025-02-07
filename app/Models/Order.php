@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+
+    use HasFactory;
     protected $fillable = ["orderLines"];
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
-    use HasFactory;
     /**
      * Get the user that owns the Order
      *
@@ -27,7 +28,7 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function orderLines()
+    public function orderlines()
     {
         return $this->hasMany(OrderLine::class);
     }

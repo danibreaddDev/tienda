@@ -49,7 +49,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
-        $orderInfo = Order::with("orderLines")->findOrFail($order->id);
+        $orderInfo = Order::findOrFail($order->id)->with("orderlines")->first();
         return view("orders.show", compact("orderInfo"));
     }
 }
