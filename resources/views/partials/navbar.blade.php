@@ -8,7 +8,6 @@
                     <li><a href="{{ route('ProductList') }}">Products</a></li>
                     <li><a href="{{ route('Users.index') }}">Users</a></li>
                     <li><a href="{{ route('Users.create') }}">Create User</a></li>
-                    <li><a href="{{ route('ShopCardList') }}">Mi carrito</a></li>
                 @else
                     <li><a href="{{ route('index') }}">Tienda</a></li>
                     <li><a href="{{ route('login') }}">login</a></li>

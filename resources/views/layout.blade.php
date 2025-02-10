@@ -12,6 +12,7 @@
 
 <body>
     @include('partials.navbar')
+    @include('partials.shopcard')
     @yield('content')
 </body>
 
