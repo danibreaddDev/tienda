@@ -25,7 +25,7 @@ class OrderController extends Controller
             "idUnico" => auth()->user()->id
         ]);
         $shopCard = json_decode($response->body(), true);
-        if (isEmpty($shopCard)) {
+        if (empty($shopCard)) {
             return redirect()->route("ProductList");
         }
         $order = new Order();
