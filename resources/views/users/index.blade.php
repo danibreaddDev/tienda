@@ -17,7 +17,7 @@
             @forelse ($users as $user)
             <tr>
                 <th scope="row">{{$user["id"]}}</th>
-                <td><a href="{{ route('Users.show', $user) }}">{{$user["username"]}}</a></td>
+                <td><a href="{{ route('Users.show', $user) }}" class="text-black">{{$user["username"]}}</a></td>
                 <td>{{$user["password"]}}</td>
                 <td>{{$user["dni"]}}</td>
                 <td>{{$user["api_token"]}}</td>
